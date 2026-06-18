@@ -1122,12 +1122,16 @@ i.category__icon { color: #bababa !important; }
   .group-requirements__group-wrapper > div:last-child .group-requirements__group--perks-wrapper > *:has(> i.fa-chevron-double-up)    { order: 8 !important; }
 }
 
-/* ─── Animated gold underline for top nav ─── */
+/* ─── Animated gold underline + rounded highlight for top nav ─── */
 .top-nav__main-menus > li > a,
 .top-nav__dropdown > a {
   position: relative !important;
   overflow: visible !important;
+  border-radius: 8px;                 /* base for smooth hover */
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
+
+/* The underline pseudo-element */
 .top-nav__main-menus > li > a::after,
 .top-nav__dropdown > a::after {
   content: "";
@@ -1137,13 +1141,25 @@ i.category__icon { color: #bababa !important; }
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: var(--at-gold) !important; /* start solid gold */
+  background: var(--at-gold) !important;
   transition: width 0.3s ease-in-out;
   border-radius: 2px;
 }
+
+/* Hover: underline grows, background appears, text turns gold, slight lift */
 .top-nav__main-menus > li > a:hover::after,
 .top-nav__main-menus > li > a:focus-visible::after,
 .top-nav__dropdown > a:hover::after,
 .top-nav__dropdown > a:focus-visible::after {
   width: 80% !important;
+}
+
+.top-nav__main-menus > li > a:hover,
+.top-nav__main-menus > li > a:focus-visible,
+.top-nav__dropdown > a:hover,
+.top-nav__dropdown > a:focus-visible {
+  background-color: var(--at-goldfaint) !important; /* soft gold background */
+  color: var(--at-gold) !important;                  /* gold text */
+  border-radius: 8px !important;                     /* rounded box */
+  transform: translateY(-1px) !important;            /* subtle lift */
 }
