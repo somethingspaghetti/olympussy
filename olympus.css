@@ -62,6 +62,37 @@ a.user-tag__link i.fa-heart { background-color: transparent !important; border-c
 .user-profile-card__meta.user-profile-card__stats, .user-profile-card__meta.user-profile-card__permissions, .user-profile-card__meta.user-profile-card__general { padding-bottom: 14px; }
 .user-profile-card__meta-item-subrow { border-bottom: 1px outset #ffffff24; }
 
+/* ─── Animated underline for top navigation ─── */
+.top-nav__dropdown-trigger {
+  position: relative;                 /* needed for the pseudo‑element */
+  /* keep your existing styles */
+}
+
+.top-nav__dropdown-trigger::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--at-gold), var(--at-gold2));
+  transition: width 0.3s ease-in-out;
+  border-radius: 1px;
+}
+
+.top-nav__dropdown-trigger:hover::after,
+.top-nav__dropdown-trigger:focus-visible::after {
+  width: 80%;
+}
+
+/* If you want a background highlight on hover (optional) */
+.top-nav__dropdown-trigger:hover,
+.top-nav__dropdown-trigger:focus-visible {
+  background-color: var(--at-goldfaint) !important; /* subtle gold tint */
+  color: var(--at-gold) !important;
+}
+
 .alert__statuspage-status { background-color: var(--at-bg3) !important; border-bottom: 1px solid var(--at-goldfaint) !important; color: var(--at-text) !important; }
 .alert__statuspage-status a { color: var(--at-gold) !important; }
 .alert__statuspage-status a:hover { color: var(--at-gold2) !important; }
