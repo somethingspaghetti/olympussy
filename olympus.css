@@ -1122,18 +1122,39 @@ i.category__icon { color: #bababa !important; }
   .group-requirements__group-wrapper > div:last-child .group-requirements__group--perks-wrapper > *:has(> i.fa-chevron-double-up)    { order: 8 !important; }
 }
 
-/* ─── Base: keep original spacing, just add transition ─── */
+/* ─── Rounded highlight using ::before ─── */
 .top-nav__main-menus > li > a,
 .top-nav__dropdown > a {
   position: relative !important;
-  overflow: visible !important;
-  border-radius: 6px !important;          /* subtle rounded corners */
-  transition: background-color 0.25s ease, color 0.25s ease;
-  display: inline-block;                  /* required for proper background sizing */
-  /* NO extra padding – keeps original spacing */
+  display: inline-block !important;
+  z-index: 1;                       /* keep text above the pseudo */
 }
 
-/* ─── Animated underline ─── */
+/* The highlight box */
+.top-nav__main-menus > li > a::before,
+.top-nav__dropdown > a::before {
+  content: "";
+  position: absolute;
+  top: -4px;                        /* adjust to match padding */
+  bottom: -4px;
+  left: -8px;                       /* adjust to match padding */
+  right: -8px;
+  border-radius: 6px;               /* rectangle with rounded edges */
+  background: rgba(245, 166, 35, 0.20);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: -1;                      /* behind the text */
+}
+
+/* Show the box on hover */
+.top-nav__main-menus > li > a:hover::before,
+.top-nav__main-menus > li > a:focus-visible::before,
+.top-nav__dropdown > a:hover::before,
+.top-nav__dropdown > a:focus-visible::before {
+  opacity: 1;
+}
+
+/* Keep the underline from ::after as well */
 .top-nav__main-menus > li > a::after,
 .top-nav__dropdown > a::after {
   content: "";
@@ -1146,9 +1167,9 @@ i.category__icon { color: #bababa !important; }
   background: var(--at-gold) !important;
   transition: width 0.3s ease-in-out;
   border-radius: 2px;
+  z-index: 2;                       /* keep above the box */
 }
 
-/* ─── Hover: rounded box + underline + gold text ─── */
 .top-nav__main-menus > li > a:hover::after,
 .top-nav__main-menus > li > a:focus-visible::after,
 .top-nav__dropdown > a:hover::after,
@@ -1156,11 +1177,10 @@ i.category__icon { color: #bababa !important; }
   width: 80% !important;
 }
 
+/* Optional: text colour change on hover */
 .top-nav__main-menus > li > a:hover,
 .top-nav__main-menus > li > a:focus-visible,
 .top-nav__dropdown > a:hover,
 .top-nav__dropdown > a:focus-visible {
-  background-color: rgba(245, 166, 35, 0.18) !important; /* subtle gold highlight */
   color: var(--at-gold) !important;
-  border-radius: 6px !important;           /* rectangle with slightly rounded corners */
 }
