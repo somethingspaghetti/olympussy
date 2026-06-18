@@ -1122,16 +1122,15 @@ i.category__icon { color: #bababa !important; }
   .group-requirements__group-wrapper > div:last-child .group-requirements__group--perks-wrapper > *:has(> i.fa-chevron-double-up)    { order: 8 !important; }
 }
 
-/* ─── Base styling for top nav links ─── */
+/* ─── Base: keep original spacing, just add transition ─── */
 .top-nav__main-menus > li > a,
 .top-nav__dropdown > a {
-  display: inline-block;                /* allows padding to work properly */
-  padding: 8px 18px !important;         /* creates the "box" area */
-  border-radius: 20px !important;       /* rounded pill shape */
-  position: relative;
+  position: relative !important;
   overflow: visible !important;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-  text-decoration: none;
+  border-radius: 6px !important;          /* subtle rounded corners */
+  transition: background-color 0.25s ease, color 0.25s ease;
+  display: inline-block;                  /* required for proper background sizing */
+  /* NO extra padding – keeps original spacing */
 }
 
 /* ─── Animated underline ─── */
@@ -1139,7 +1138,7 @@ i.category__icon { color: #bababa !important; }
 .top-nav__dropdown > a::after {
   content: "";
   position: absolute;
-  bottom: 2px;
+  bottom: -2px;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
@@ -1149,7 +1148,7 @@ i.category__icon { color: #bababa !important; }
   border-radius: 2px;
 }
 
-/* ─── Hover state: underline grows, rounded box appears ─── */
+/* ─── Hover: rounded box + underline + gold text ─── */
 .top-nav__main-menus > li > a:hover::after,
 .top-nav__main-menus > li > a:focus-visible::after,
 .top-nav__dropdown > a:hover::after,
@@ -1161,8 +1160,7 @@ i.category__icon { color: #bababa !important; }
 .top-nav__main-menus > li > a:focus-visible,
 .top-nav__dropdown > a:hover,
 .top-nav__dropdown > a:focus-visible {
-  background-color: rgba(245, 166, 35, 0.22) !important; /* visible gold box */
+  background-color: rgba(245, 166, 35, 0.18) !important; /* subtle gold highlight */
   color: var(--at-gold) !important;
-  border-radius: 20px !important;        /* keeps it rounded on hover */
-  transform: translateY(-1px) !important;
+  border-radius: 6px !important;           /* rectangle with slightly rounded corners */
 }
