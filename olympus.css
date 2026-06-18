@@ -1122,37 +1122,41 @@ i.category__icon { color: #bababa !important; }
   .group-requirements__group-wrapper > div:last-child .group-requirements__group--perks-wrapper > *:has(> i.fa-chevron-double-up)    { order: 8 !important; }
 }
 
-/* ─── Only top-level menu items ─── */
+/* ─── Top‑nav hover effects ──────────────────────────────── */
+/* Only top‑level links, no dropdown items */
 .top-nav__main-menus > li > a {
   position: relative !important;
+  display: inline-block !important;   /* keeps background wrapping text */
   z-index: 1;
-  /* ensure no extra padding from our rules */
-  padding: inherit !important;   /* keep site's default padding */
+  /* no extra padding, margins, or shifts */
 }
 
-/* The rounded highlight box (behind the text) */
+/* Rounded rectangle highlight (behind text) */
 .top-nav__main-menus > li > a::before {
   content: "";
   position: absolute;
-  inset: -4px -8px;             /* top/bottom -4px, left/right -8px – adjust to taste */
-  border-radius: 6px;
-  background: rgba(245, 166, 35, 0.20);
+  top: -4px;          /* adjust to make box taller */
+  bottom: -4px;
+  left: -8px;         /* adjust to make box wider */
+  right: -8px;
+  border-radius: 6px; /* rectangle with rounded edges */
+  background: rgba(245, 166, 35, 0.20); /* visible gold tint */
   opacity: 0;
-  transition: opacity 0.25s ease;
-  z-index: -1;
+  transition: opacity 0.2s ease;
+  z-index: -1;        /* behind the text */
 }
 
-/* Show the box on hover */
+/* Show highlight on hover */
 .top-nav__main-menus > li > a:hover::before,
 .top-nav__main-menus > li > a:focus-visible::before {
   opacity: 1;
 }
 
-/* The animated underline */
+/* Animated underline */
 .top-nav__main-menus > li > a::after {
   content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: -2px;       /* position below text, adjust if needed */
   left: 50%;
   transform: translateX(-50%);
   width: 0;
@@ -1163,12 +1167,13 @@ i.category__icon { color: #bababa !important; }
   z-index: 2;
 }
 
+/* Underline grows on hover */
 .top-nav__main-menus > li > a:hover::after,
 .top-nav__main-menus > li > a:focus-visible::after {
   width: 80% !important;
 }
 
-/* Text colour on hover */
+/* Text turns gold on hover */
 .top-nav__main-menus > li > a:hover,
 .top-nav__main-menus > li > a:focus-visible {
   color: var(--at-gold) !important;
